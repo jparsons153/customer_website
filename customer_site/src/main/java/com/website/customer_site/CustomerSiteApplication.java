@@ -2,6 +2,7 @@ package com.website.customer_site;
 
 import com.website.customer_site.models.Customer;
 import com.website.customer_site.services.CustomerService;
+import com.website.customer_site.services.RentalServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -14,6 +15,9 @@ public class CustomerSiteApplication implements CommandLineRunner {
 
 	@Autowired
 	private CustomerService customerService;
+
+	@Autowired
+	private RentalServiceImpl rentalService;
 
 	// The main method is defined here which will start your application
 	public static void main(String[] args) {

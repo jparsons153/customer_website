@@ -23,7 +23,7 @@ public class CustomerController {
 
 
     @GetMapping("/")
-    public String vewHomePage(Model model) {
+    public String viewHomePage(Model model) {
         // Here you call the service to retrieve all the customers
         final List<Customer> customerList = customerService.getAllCustomers();
         // Once the customers are retrieved, you can store them in model and return it to the view

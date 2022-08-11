@@ -22,5 +22,5 @@ public class Customer {
     private String address;
 
     @OneToOne
-    RentalCar rentals;
+    RentalCar rentalcars;
 }
