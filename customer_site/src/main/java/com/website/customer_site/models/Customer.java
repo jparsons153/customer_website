@@ -20,4 +20,7 @@ public class Customer {
     private String emailAddress;
     private Integer age;
     private String address;
+
+    @OneToOne
+    RentalCar rentals;
 }
