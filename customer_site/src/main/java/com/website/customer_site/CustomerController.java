@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.InputMismatchException;
 import java.util.List;
 
 @Controller
@@ -47,17 +48,23 @@ public class CustomerController {
         return "redirect:/";
     }
 
+    // can't get error html to show, status 400 or 500 shown when customerID is not a path variable?
     @GetMapping("/edit/{id}")
     // The path variable "id" is used to pull a customer from the database
     public ModelAndView showEditCustomerPage(@PathVariable(name = "id") Long id) {
-        // Since the previous methods use Model, this one uses ModelAndView
-        // to get some experience using both. Model is more common these days,
-        // but ModelAndView accomplishes the same thing and can be useful in
-        // certain circumstances. The view name is passed to the constructor.
-        ModelAndView mav = new ModelAndView("edit-customer");
+        // create ModelAndView error page
+        ModelAndView errorMV = new ModelAndView("error-page");
         Customer customer = customerService.getCustomer(id);
-        mav.addObject("customer", customer);
-        return mav;
+        // check that id is a valid customer id value
+            if (!id.equals(customer.getId())) {
+                errorMV.addObject("message",
+                        "Cannot update, customer id " + customer.getId()
+                                + " doesn't match id to be updated: " + id + ".");
+            return errorMV;
+            }
+            ModelAndView mav = new ModelAndView("edit-customer");
+            mav.addObject("customer", customer);
+            return mav;
     }
 
     @PostMapping("/update/{id}")
@@ -76,5 +83,12 @@ public class CustomerController {
     public String deleteCustomer(@PathVariable(name = "id") Long id) {
         customerService.deleteCustomer(id);
         return "redirect:/";
+    }
+
+    // catch error thrown and return custom error page
+    public class DataValidationException extends Exception{
+        public String customPage(){
+            return "error-page";
+        }
     }
 }
