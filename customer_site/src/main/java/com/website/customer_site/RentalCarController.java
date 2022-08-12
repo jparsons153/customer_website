@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 public class RentalCarController {
 
@@ -28,6 +30,13 @@ public class RentalCarController {
     public String saveRentalCar(@ModelAttribute("rentalCar") RentalCar rentalCar){
         rentalService.saveRentalCar(rentalCar);
         return "redirect:/";
+    }
+
+    @GetMapping("/rentalcar/Index")
+    public String carIndex(Model carModel){
+        final List<RentalCar> carList = rentalService.getAllCars();
+        carModel.addAttribute("carList",carList);
+        return "carIndex";
     }
 
 }

@@ -19,10 +19,10 @@ public class RentalServiceImpl {
     @Autowired
     final RentalCarsRepository rentalCarsRepository;
 
-//    @Override
-//    public List<RentalCar> getAllCustomers() {
-//        return rentalCarsRepository.findAll();
-//    }
+    @Transactional
+    public List<RentalCar> getAllCars() {
+        return rentalCarsRepository.findAll();
+    }
 
     @Transactional
     public RentalCar saveRentalCar(RentalCar rentalCar) {
