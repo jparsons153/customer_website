@@ -21,7 +21,6 @@ public class RentalCar {
     private String registration;
 
     // bi-directional or uni directional?
-//    @OneToOne
-//    mappedBy = "rentals"
-//    Customer customer;
+    @OneToOne(mappedBy = "rentalcars")
+    private Customer customer;
 }

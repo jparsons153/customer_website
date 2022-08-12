@@ -21,6 +21,9 @@ public class Customer {
     private Integer age;
     private String address;
 
-    @OneToOne
-    RentalCar rentalcars;
+    @OneToOne(
+            //optional = false,
+            cascade = CascadeType.PERSIST
+    )
+    private RentalCar rentalcars;
 }
