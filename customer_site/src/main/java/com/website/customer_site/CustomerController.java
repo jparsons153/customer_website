@@ -94,7 +94,14 @@ public class CustomerController {
         return "redirect:/";
     }
 
-//    @RequestMapping("/assign")
+    @GetMapping("/assign/{id}")
+    ModelAndView assignRentalCarPage(@PathVariable(name = "id") Long id){
+        Customer customer = customerService.getCustomer(id);
+        ModelAndView mav = new ModelAndView("assign-car");
+        mav.addObject("customer", customer);
+        return mav;
+    }
+
 
     // catch error thrown and return custom error page
     public class DataValidationException extends Exception{

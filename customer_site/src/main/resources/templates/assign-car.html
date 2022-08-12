@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Assign Rental Car</title>
+</head>
+<body>
+<div align="center">
+    <h1>Assign Rental Car</h1>
+    <br/><br/>
+    <form action="#" th:action="@{'/update/' + ${customer.id}}" th:object="${customer}"
+          method="post">
+        <table border="0" cellpadding="1">
+            <tr>
+                <td>Customer ID:</td>
+                <td><input type="text" th:field="*{id}" readonly/></td>
+                <td>Customer Name:</td>
+                <td><input type="text" th:field="*{fullName}" required/></td>
+            </tr>
+        </table>
+        <br/><br/>
+        <!--
+        populate table of rental cars with entries from database!
+        -->
+        <table border="1" cellpadding="10">
+            <thead>
+            <tr>
+                <th>Rental ID</th>
+                <th>Car make </th>
+                <th>Car model</th>
+                <th>Select</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="carList : ${carList}">
+                <td th:text="${carList.id}">Rental ID</td>
+                <td th:text="${carList.make}">Car make</td>
+                <td th:text="${carList.model}">Car model</td>
+                <td th:text="${carList.registration}">Registration</td>
+                <td th:text="${carList.customer}">Customer Name</td>
+                <td> <a th:href="@{'/update/' + ${customer.id}}">Select</a>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+</body>
+</html>

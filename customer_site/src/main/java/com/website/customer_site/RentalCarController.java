@@ -38,5 +38,4 @@ public class RentalCarController {
         carModel.addAttribute("carList",carList);
         return "carIndex";
     }
-
 }
