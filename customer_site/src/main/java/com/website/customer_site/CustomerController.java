@@ -94,6 +94,8 @@ public class CustomerController {
         return "redirect:/";
     }
 
+//    @RequestMapping("/assign")
+
     // catch error thrown and return custom error page
     public class DataValidationException extends Exception{
         public String customPage(){

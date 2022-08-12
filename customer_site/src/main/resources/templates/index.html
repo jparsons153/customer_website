@@ -40,7 +40,10 @@
             <td th:text="${customer.age}">Age</td>
             <td th:text="${customer.address}">Address</td>
             <td th:text="${customer.rentalcars}">Rental Car</td>
-            <td> <a th:href="@{'/edit/' + ${customer.id}}">Edit</a><a th:href="@{'/delete/' + ${customer.id}}">  Delete</a></td>
+            <td> <a th:href="@{'/edit/' + ${customer.id}}">Edit</a><a th:href="@{'/delete/' + ${customer.id}}">  Delete</a>
+             <a th:href="@{'/assign/' + ${customer.id}}" th:if="${#lists.isEmpty(customer.rentalcars)}">Assign Car</a>
+             <a th:href="@{'/remove/' + ${customer.id}}"th:if="${not #lists.isEmpty(customer.rentalcars)}">Remove Car</a>
+            </td>
         </tr>
         </tbody>
     </table>
