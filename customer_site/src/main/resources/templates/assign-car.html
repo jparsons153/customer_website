@@ -26,6 +26,8 @@
 <!--    TODO update th:text to display toString of rentalCar id + make/ model -->
                    <select th:field="*{rentalCarList}">
                        <option value="">Select RentalCar</option>
+                       <!-- show rental cars not assigned to customer-->
+                       <!--th:if="${#lists.isEmpty(customer.rentalcars)}"-->
                        <option th:each="rentalCar : ${rentalCarList}"
                                th:value="${rentalCar}"
                                th:text="${rentalCar.id}">Wireframe</option>

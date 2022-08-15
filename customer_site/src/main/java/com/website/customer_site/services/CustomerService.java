@@ -19,4 +19,6 @@ public interface CustomerService {
 
     // add method to interface to assign car to customer
     void assignRentalcar(Long customerId, Long rentalCarId);
+
+    void removeRentalcar(Long id);
 }

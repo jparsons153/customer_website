@@ -68,4 +68,13 @@ public class CustomerServiceImpl implements CustomerService{
         customerAssigned.setRentalcars(rentalCarAssigned);
         saveCustomer(customerAssigned);
     }
+
+    @Transactional
+    public void removeRentalcar(Long customerId){
+        Customer customerAssigned = getCustomer(customerId);
+        System.out.println("customer id from removeRentalCar service method " + customerId);
+
+        customerAssigned.setRentalcars(null);
+        saveCustomer(customerAssigned);
+    }
 }

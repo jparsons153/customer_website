@@ -99,6 +99,13 @@ public class CustomerController {
         return mav;
     }
 
+    @RequestMapping("/remove/{id}")
+    public String removeCarAssigned(@PathVariable(name = "id") Long id) {
+        customerService.removeRentalcar(id);
+        return "redirect:/";
+    }
+
+
     @PostMapping("/update-customer/")
     public String carUpdate(@RequestParam("customerId")Long customerId,@RequestParam("rentalCarId")Long rentalCarId) {
 
