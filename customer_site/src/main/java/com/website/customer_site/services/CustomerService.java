@@ -18,4 +18,5 @@ public interface CustomerService {
     List<Customer> saveAllCustomer(List<Customer> customerList);
 
     // add method to interface to assign car to customer
+    void assignRentalcar(Long customerId, Long rentalCarId);
 }

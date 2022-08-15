@@ -17,13 +17,14 @@
                 <td><input type="text" name="customerId" th:value="${customer.id}" readonly/></td>
                 <td>Customer Name:</td>
                 <td><input type="text" th:field="${customer.fullName}" required/></td>
-                <!--
+
                 <td>RentalCar:</td>
                 <td><input type="text" name="rentalCarId" value="4" required/></td>
-                -->
+
+                <!--
                 <td>RentalCar:</td>
                 <td>
-                    <!--TODO update th:text to display toString of rentalCar id + make/ model-->
+                    TODO update th:text to display toString of rentalCar id + make/ model
                 <select th:field="*{rentalCarList}">
                     <option value="">Select RentalCar</option>
                     <option th:each="rentalCar : ${rentalCarList}"
@@ -31,6 +32,7 @@
                             th:text="${rentalCar.id}">Wireframe</option>
                 </select>
                 </td>
+                -->
                 <!--<td> <a th:href="@{'/update-customer/' + ${customer.id}}">Select</a>-->
                 <td ><button type="submit">Save</button> </td>
             </tr>

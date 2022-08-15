@@ -18,9 +18,8 @@ public class CustomerServiceImpl implements CustomerService{
     @Autowired
     final CustomerRepository customerRepository;
 
-    private RentalServiceImpl rentalService;
-    public void RentalCarController(RentalServiceImpl rentalService){this.rentalService = rentalService;}
-
+    @Autowired
+    final RentalServiceImpl rentalService;
 
     // The findAll function gets all the customers by doing a SELECT query in the DB.
     @Override
@@ -62,9 +61,11 @@ public class CustomerServiceImpl implements CustomerService{
     @Transactional
     public void assignRentalcar(Long customerId, Long rentalCarId){
         Customer customerAssigned = getCustomer(customerId);
-        RentalCar rentalCar = rentalService.getRentalCar(rentalCarId);
+        System.out.println("customer id from service method " + customerId);
+        RentalCar rentalCarAssigned = rentalService.getRentalCar(rentalCarId);
 
-        customerAssigned.setRentalcars(rentalCar);
+//        customerAssigned.setFullName("Joe Bloggs");
+        customerAssigned.setRentalcars(rentalCarAssigned);
         saveCustomer(customerAssigned);
     }
 }

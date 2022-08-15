@@ -104,6 +104,9 @@ public class CustomerController {
 
 //        customerService.saveCustomer(customer).setRentalcars(rentalCar);
         // fetch object and save rentalCar id to customer object
+
+        customerService.assignRentalcar(customerId,rentalCarId);
+
         System.out.println(customerId);
         System.out.println(rentalCarId);
         return "redirect:/";
