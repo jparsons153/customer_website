@@ -16,4 +16,6 @@ public interface CustomerService {
     void deleteCustomer(Long id);
 
     List<Customer> saveAllCustomer(List<Customer> customerList);
+
+    // add method to interface to assign car to customer
 }

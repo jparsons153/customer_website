@@ -49,4 +49,12 @@ public class CustomerServiceImpl implements CustomerService{
     public List<Customer> saveAllCustomer(List<Customer> customerList) {
         return customerRepository.saveAll(customerList);
     }
+
+    // create method to assign car
+    // fetch customer + car based on id
+    // update customer with car & save to database
+  //  @Transactional
+  //  public void assignRentalcar(Long customerId, Long renatlCarId){
+  //  }
+
 }

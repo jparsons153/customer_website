@@ -16,7 +16,6 @@ public class RentalCarController {
 
     @Autowired
     private final RentalServiceImpl rentalService;
-
     public RentalCarController(RentalServiceImpl rentalService){this.rentalService = rentalService;}
 
     @GetMapping("/newCar")

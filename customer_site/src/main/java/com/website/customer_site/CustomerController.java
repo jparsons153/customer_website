@@ -1,14 +1,15 @@
 package com.website.customer_site;
 
 import com.website.customer_site.models.Customer;
+import com.website.customer_site.models.RentalCar;
 import com.website.customer_site.services.CustomerService;
+import com.website.customer_site.services.RentalServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.InputMismatchException;
 import java.util.List;
 
 @Controller
@@ -16,10 +17,13 @@ public class CustomerController {
 
     @Autowired
     private final CustomerService customerService;
-
-    public CustomerController(CustomerService customerService) {
+    public CustomerController(CustomerService customerService, RentalServiceImpl rentalService) {
         this.customerService = customerService;
+        this.rentalService = rentalService;
     }
+
+    private RentalServiceImpl rentalService;
+    public void RentalCarController(RentalServiceImpl rentalService){this.rentalService = rentalService;}
 
 
     @GetMapping("/")
@@ -95,13 +99,31 @@ public class CustomerController {
     }
 
     @GetMapping("/assign/{id}")
+    // show web page method name
     ModelAndView assignRentalCarPage(@PathVariable(name = "id") Long id){
         Customer customer = customerService.getCustomer(id);
         ModelAndView mav = new ModelAndView("assign-car");
         mav.addObject("customer", customer);
+
+        final List<RentalCar> rentalCarList = rentalService.getAllCars();
+        mav.addObject("rentalCarList", rentalCarList);
         return mav;
     }
 
+    @PostMapping("/update-customer/")
+    public String carUpdate(@RequestParam("customerId")Long customerId,@RequestParam("rentalCarId")Long rentalCarId) {
+//        if (!id.equals(customer.getId())) {
+//            model.addAttribute("message",
+//                    "Cannot update, customer id " + customer.getId()
+//                            + " doesn't match id to be updated: " + id + ".");
+//            return "error-page";
+//        }
+//        customerService.saveCustomer(customer).setRentalcars(rentalCar);
+        // fetch object and save rentalCar id to customer object
+        System.out.println(customerId);
+        System.out.println(rentalCarId);
+        return "redirect:/";
+    }
 
     // catch error thrown and return custom error page
     public class DataValidationException extends Exception{
