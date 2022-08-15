@@ -35,15 +35,6 @@ public class CustomerController {
         return "index";
     }
 
-//    @GetMapping("/customers")
-//    public String carsAndCustomers(Model carCustomerModel) {
-//        // Here you call the service to retrieve all the customers
-//        final List<Customer> customerList = customerService.getAllCustomers();
-//        // Once the customers are retrieved, you can store them in model and return it to the view
-//        model.addAttribute("customerList", customerList);
-//        return "index";
-//    }
-
     @GetMapping("/new")
     public String showNewCustomerPage(Model model) {
         // Here a new (empty) Customer is created and then sent to the view
@@ -60,8 +51,7 @@ public class CustomerController {
         customerService.saveCustomer(customer);
         return "redirect:/";
     }
-
-    // can't get error html to show, status 400 or 500 shown when customerID is not a path variable?
+    
     @GetMapping("/edit/{id}")
     // The path variable "id" is used to pull a customer from the database
     public ModelAndView showEditCustomerPage(@PathVariable(name = "id") Long id) {
@@ -99,8 +89,7 @@ public class CustomerController {
     }
 
     @GetMapping("/assign/{id}")
-    // show web page method name
-    ModelAndView assignRentalCarPage(@PathVariable(name = "id") Long id){
+    ModelAndView showRentalCarPage(@PathVariable(name = "id") Long id){
         Customer customer = customerService.getCustomer(id);
         ModelAndView mav = new ModelAndView("assign-car");
         mav.addObject("customer", customer);
@@ -112,23 +101,11 @@ public class CustomerController {
 
     @PostMapping("/update-customer/")
     public String carUpdate(@RequestParam("customerId")Long customerId,@RequestParam("rentalCarId")Long rentalCarId) {
-//        if (!id.equals(customer.getId())) {
-//            model.addAttribute("message",
-//                    "Cannot update, customer id " + customer.getId()
-//                            + " doesn't match id to be updated: " + id + ".");
-//            return "error-page";
-//        }
+
 //        customerService.saveCustomer(customer).setRentalcars(rentalCar);
         // fetch object and save rentalCar id to customer object
         System.out.println(customerId);
         System.out.println(rentalCarId);
         return "redirect:/";
-    }
-
-    // catch error thrown and return custom error page
-    public class DataValidationException extends Exception{
-        public String customPage(){
-            return "error-page";
-        }
     }
 }

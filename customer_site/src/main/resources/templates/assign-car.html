@@ -23,6 +23,7 @@
                 -->
                 <td>RentalCar:</td>
                 <td>
+                    <!--TODO update th:text to display toString of rentalCar id + make/ model-->
                 <select th:field="*{rentalCarList}">
                     <option value="">Select RentalCar</option>
                     <option th:each="rentalCar : ${rentalCarList}"
