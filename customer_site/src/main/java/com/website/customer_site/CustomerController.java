@@ -51,7 +51,7 @@ public class CustomerController {
         customerService.saveCustomer(customer);
         return "redirect:/";
     }
-    
+
     @GetMapping("/edit/{id}")
     // The path variable "id" is used to pull a customer from the database
     public ModelAndView showEditCustomerPage(@PathVariable(name = "id") Long id) {

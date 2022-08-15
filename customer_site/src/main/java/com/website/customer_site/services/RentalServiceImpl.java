@@ -1,6 +1,5 @@
 package com.website.customer_site.services;
 
-import com.website.customer_site.models.Customer;
 import com.website.customer_site.models.RentalCar;
 import com.website.customer_site.repos.RentalCarsRepository;
 import lombok.RequiredArgsConstructor;
@@ -9,12 +8,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class RentalServiceImpl {
-// implements CustomerService interface - return type is different??
 
     @Autowired
     final RentalCarsRepository rentalCarsRepository;
@@ -28,11 +27,12 @@ public class RentalServiceImpl {
     public RentalCar saveRentalCar(RentalCar rentalCar) {
         return rentalCarsRepository.save(rentalCar);
     }
-//
-//    @Override
-//    public Customer getCustomer(Long id) {
-//        return null;
-//    }
+
+    @Transactional
+    public RentalCar getRentalCar(Long id) {
+        return rentalCarsRepository.findById(id)
+                .orElse(null);
+    }
 //
 //    @Override
 //    public void deleteCustomer(Long id) {

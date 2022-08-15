@@ -1,6 +1,7 @@
 package com.website.customer_site.services;
 
 import com.website.customer_site.models.Customer;
+import com.website.customer_site.models.RentalCar;
 import com.website.customer_site.repos.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -15,6 +17,10 @@ import java.util.List;
 public class CustomerServiceImpl implements CustomerService{
     @Autowired
     final CustomerRepository customerRepository;
+
+    private RentalServiceImpl rentalService;
+    public void RentalCarController(RentalServiceImpl rentalService){this.rentalService = rentalService;}
+
 
     // The findAll function gets all the customers by doing a SELECT query in the DB.
     @Override
@@ -53,8 +59,12 @@ public class CustomerServiceImpl implements CustomerService{
     // create method to assign car
     // fetch customer + car based on id
     // update customer with car & save to database
-  //  @Transactional
-  //  public void assignRentalcar(Long customerId, Long renatlCarId){
-  //  }
+    @Transactional
+    public void assignRentalcar(Long customerId, Long rentalCarId){
+        Customer customerAssigned = getCustomer(customerId);
+        RentalCar rentalCar = rentalService.getRentalCar(rentalCarId);
 
+        customerAssigned.setRentalcars(rentalCar);
+        saveCustomer(customerAssigned);
+    }
 }
