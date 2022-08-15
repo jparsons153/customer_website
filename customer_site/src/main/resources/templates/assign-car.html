@@ -8,13 +8,6 @@
 <div align="center">
     <h1>Assign Rental Car</h1>
     <br/><br/>
-    <!--
-   <form action="#" th:action="@{'/update-customer/'}+'/'+${customer.id}+'/'+${rentalCarList.id}}" th:object="${customer},${rentalCar}"
-         method="post">
-
-        <form action="#" th:action="@{'/update-customer/' + ${customer.id} + '/' + ${rentalCarList.id}}" th:object="${customer},${rentalCar}"
-         method="post">
-         -->
        <form action="#" th:action="@{'/update-customer/'}"
              method="post">
 
@@ -24,37 +17,23 @@
                 <td><input type="text" name="customerId" th:value="${customer.id}" readonly/></td>
                 <td>Customer Name:</td>
                 <td><input type="text" th:field="${customer.fullName}" required/></td>
+                <!--
                 <td>RentalCar:</td>
                 <td><input type="text" name="rentalCarId" value="4" required/></td>
-                <td ><button type="submit">Save</button> </td>
-                <!--
-                add drop-down of available cars + save button
                 -->
+                <td>RentalCar:</td>
+                <td>
+                <select th:field="*{rentalCarList}">
+                    <option value="">Select RentalCar</option>
+                    <option th:each="rentalCar : ${rentalCarList}"
+                            th:value="${rentalCar}"
+                            th:text="${rentalCar.id}">Wireframe</option>
+                </select>
+                </td>
+                <!--<td> <a th:href="@{'/update-customer/' + ${customer.id}}">Select</a>-->
+                <td ><button type="submit">Save</button> </td>
             </tr>
         </table>
-        <br/><br/>
-        <!--
-        populate table of rental cars with entries from database!
-
-        <table border="1" cellpadding="10">
-            <thead>
-            <tr>
-                <th>Rental ID</th>
-                <th>Car make </th>
-                <th>Car model</th>
-                <th>Select</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="rentalCarList : ${rentalCarList}">
-                <td th:text="${rentalCarList.id}">Rental ID</td>
-                <td th:text="${rentalCarList.make}">Car make</td>
-                <td th:text="${rentalCarList.model}">Car model</td>
-                <td> <a th:href="@{'/update-customer/' + ${customer.id}}">Select</a>
-            </tr>
-            </tbody>
-        </table>
-        -->
     </form>
 </div>
 </body>
