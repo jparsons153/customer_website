@@ -22,8 +22,17 @@ public class Customer {
     private String address;
 
     @OneToOne(
-            //optional = false,
+
             cascade = CascadeType.PERSIST
     )
     private RentalCar rentalcars;
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", fullName='" + fullName + '\'' +
+                ", emailAddress='" + emailAddress + '\'' +
+                '}';
+    }
 }

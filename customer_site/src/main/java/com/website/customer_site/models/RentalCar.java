@@ -20,7 +20,15 @@ public class RentalCar {
     private String model;
     private String registration;
 
-    // bi-directional or uni directional?
     @OneToOne(mappedBy = "rentalcars")
     private Customer customer;
+
+    @Override
+    public String toString() {
+        return "RentalCar{" +
+                "id=" + id +
+                ", make='" + make + '\'' +
+                ", model='" + model + '\'' +
+                '}';
+    }
 }

@@ -110,9 +110,6 @@ public class CustomerController {
     @PostMapping("/update-customer/")
     public String carUpdate(@RequestParam("customerId")Long customerId,@RequestParam("rentalCarId")Long rentalCarId) {
 
-//        customerService.saveCustomer(customer).setRentalcars(rentalCar);
-        // fetch object and save rentalCar id to customer object
-
         customerService.assignRentalcar(customerId,rentalCarId);
 
         System.out.println(customerId);

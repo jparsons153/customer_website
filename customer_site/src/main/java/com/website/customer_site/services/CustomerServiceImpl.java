@@ -55,8 +55,6 @@ public class CustomerServiceImpl implements CustomerService{
         return customerRepository.saveAll(customerList);
     }
 
-    // create method to assign car
-    // fetch customer + car based on id
     // update customer with car & save to database
     @Transactional
     public void assignRentalcar(Long customerId, Long rentalCarId){
@@ -64,7 +62,6 @@ public class CustomerServiceImpl implements CustomerService{
         System.out.println("customer id from service method " + customerId);
         RentalCar rentalCarAssigned = rentalService.getRentalCar(rentalCarId);
 
-//        customerAssigned.setFullName("Joe Bloggs");
         customerAssigned.setRentalcars(rentalCarAssigned);
         saveCustomer(customerAssigned);
     }

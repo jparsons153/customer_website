@@ -33,14 +33,4 @@ public class RentalServiceImpl {
         return rentalCarsRepository.findById(id)
                 .orElse(null);
     }
-//
-//    @Override
-//    public void deleteCustomer(Long id) {
-//
-//    }
-//
-//    @Override
-//    public List<Customer> saveAllCustomer(List<Customer> customerList) {
-//        return null;
-//    }
 }
