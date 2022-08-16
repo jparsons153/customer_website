@@ -23,8 +23,8 @@
                    <select name="rentalCarId">
                        <option value="">Select RentalCar</option>
                        <!-- show rental cars not assigned to customer-->..
-                       <!--th:if="${#lists.isEmpty(customer.rentalcars)}"-->
-                       <option th:each="rentalCar : ${rentalCarList}"
+                       <!--th:if="${#lists.isEmpty(rentalCar.customer)}"-->
+                       <option th:each="rentalCar : ${rentalCarList}" th:if="${#lists.isEmpty(rentalCar.customer)}"
                                th:value="${rentalCar.id}"
                                th:text="${rentalCar.make}">Wireframe</option>
                    </select>
